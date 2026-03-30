@@ -65,3 +65,42 @@ MEMORY.md 里写"Memory 文件使用规范..."
 - 简单命令（<1分钟）→ 自己执行
 - 耗时任务（>5分钟）→ 派生 subagent
 - 不确定时 → 优先派生 subagent
+
+---
+
+## 多 Session 写入规范
+
+### 原则
+
+- **每日日志（memory/YYYY-MM-DD.md）采用追加模式，不覆盖已有内容**
+- **MEMORY.md 只在主 session 写入，避免多 session 冲突**
+- 写入前先读取文件，确保不丢失其他 session 的内容
+
+### 案例
+
+✅ **正确做法**：追加到每日日志
+```markdown
+## 晚上新增内容
+
+- 配置了 git backup cron job
+- 讨论了多 session 写入规范
+```
+
+❌ **错误做法**：覆盖整个文件
+```markdown
+# 2026-03-30
+今天做了 xxx...（覆盖了之前 session 写的内容）
+```
+
+✅ **正确做法**：MEMORY.md 谨慎写入
+```
+只在主 session（Jet 的飞书 DM）中写入 MEMORY.md
+群聊 session 不写入 MEMORY.md
+cron job / subagent 不写入 MEMORY.md
+```
+
+### 为什么这样做？
+
+1. **追加不会丢失内容**：多个 session 可以安全地追加到同一文件
+2. **MEMORY.md 精贵**：只放长期原则，减少写入频率，降低冲突风险
+3. **先读后写**：确保不覆盖其他 session 的内容
