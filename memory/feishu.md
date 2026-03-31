@@ -43,11 +43,32 @@ GET /open-apis/docx/v1/documents/<wiki_token>/blocks
 2. 写入内容:
    POST /open-apis/docx/v1/documents/<document_id>/blocks/<document_id>/children
    Body: { "index": null, "children": [...] }
-
-3. (可选) 移动到知识库 - 目前 wiki API 创建节点有问题，暂时跳过
 ```
 
-### 3. 认证
+### 3. 更新文档内容（只修改部分）
+
+```
+PATCH /open-apis/docx/v1/documents/<document_id>/blocks/batch_update?document_revision_id=-1
+
+Body: {
+  "requests": [
+    {
+      "block_id": "<要修改的block_id>",
+      "update_text": {
+        "elements": [{"text_run": {"content": "新内容"}}],
+        "style": {"align": 1},
+        "fields": [1]
+      }
+    }
+  ]
+}
+
+注意：
+- 需要先 GET blocks 获取 block_id
+- fields 是必需字段，[1] 表示修改对齐方式
+```
+
+### 4. 认证
 
 ```
 POST /open-apis/auth/v3/tenant_access_token/internal
