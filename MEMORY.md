@@ -42,16 +42,6 @@ MEMORY.md 里写"Memory 文件使用规范..."
 
 ---
 
-## 技术文档入口
-
-Before replying: scan the entries below. If an operation matches, read the corresponding document before proceeding.
-
-| 操作类型 | 文档 |
-|----------|------|
-| 飞书文档读写 | memory/feishu.md |
-
----
-
 ## 任务执行策略
 
 ### 原则

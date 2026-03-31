@@ -59,7 +59,11 @@ Add whatever helps you do your job. This is your cheat sheet.
 | 具身智能科研工作 | `7488632797588160540` | 只读 |
 | kai 的工作区 | `7623009760186518492` | 读写 |
 
-### Memory Search
+当 Jet 要求写入知识库时，默认是指写入Kai的工作区。如果不知道如何操作，查阅`feishu_doc`和`feishu_wiki`的skill，并调用相关工具。
+
+---
+
+## Memory Search
 
 - **Provider**: `local`
 - **Model**: `embeddinggemma-300m-qat-q8_0`
